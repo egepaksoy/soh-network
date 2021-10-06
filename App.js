@@ -1,21 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import {
+  StyleSheet,
+  SafeAreaView,
+  StatusBar as StatusBarReact,
+  Platform,
+  ScrollView,
+} from "react-native";
+// ----------------------------------------------------------
+import CurrentLesson from "./App/components/CurrentLesson";
+import CountDownTimer from "./App/components/CountDownTimer";
+import News from "./App/components/News";
+import Footer from "./App/components/Footer";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollView}>
+        <CurrentLesson />
+        <CountDownTimer />
+        <News />
+        <StatusBar style="auto" />
+      </ScrollView>
+      <Footer />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: Platform.OS === "android" ? StatusBarReact.currentHeight : 0,
+  },
+  scrollView: {
+    paddingLeft: "8%",
+    paddingRight: "8%",
   },
 });
