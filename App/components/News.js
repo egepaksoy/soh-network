@@ -1,16 +1,19 @@
 import React from "react";
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+const Stack = createNativeStackNavigator();
 const newsTitle = "News Title";
 const newsContent =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam pulvinar augue non tincidunt porttitor. Suspendisse.";
 
-export default function News() {
+export default function News({ navigation }) {
   return (
     <TouchableOpacity
-      // TODO: onPress={() => navigator.navigate(News)} News Sayfasına navigate edilcek
       activeOpacity={0.7}
       style={styles.container}
+      onPress={() => {navigation.navigate("News")}}
     >
       <View style={styles.news}>
         <Text numberOfLines={1} style={styles.newsTitle}>

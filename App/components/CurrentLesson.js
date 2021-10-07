@@ -5,12 +5,12 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 const lesson = "Matematik";
 const teacher = "Hasan Ünal";
 
-export default function CurrentLesson() {
+export default function CurrentLesson({ navigation }) {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       style={styles.container}
-      // TODO: onPress={() => navigator.navigate("Current Lesson page")} Current Lesson sayfasına yönlendirilcek
+      onPress={() => navigation.navigate("Current Lesson")}
     >
       <View>
         <Text style={styles.lesson}>{lesson}</Text>

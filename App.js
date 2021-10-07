@@ -6,24 +6,57 @@ import {
   StatusBar as StatusBarReact,
   Platform,
   ScrollView,
+  View,
+  Button,
 } from "react-native";
 // ----------------------------------------------------------
 import CurrentLesson from "./App/components/CurrentLesson";
 import CountDownTimer from "./App/components/CountDownTimer";
 import News from "./App/components/News";
 import Footer from "./App/components/Footer";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
+
+/* function HomeScreen() {
+  return (
+      <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
+          <CurrentLesson />
+          <CountDownTimer />
+          <News />
+          <StatusBar style="auto" />
+        </ScrollView>
+        <Footer />
+      </SafeAreaView>
+  )
+
+} */
+// TODO: Bütün componentleri içine alan bir view yapmalı ama yukarıdaki gibi değil (veya yukarıda navigation objesini döndürmeli)
+function HomeScreen({ navigation }) {
+  return (
+    <View>
+      <Button
+        title="Hit ME!"
+        onPress={() => {
+          navigation.navigate("Countdown");
+        }}
+      />
+    </View>
+  );
+}
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-        <CurrentLesson />
-        <CountDownTimer />
-        <News />
-        <StatusBar style="auto" />
-      </ScrollView>
-      <Footer />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Current Lesson" component={CurrentLesson} />
+        <Stack.Screen name="Countdown" component={CountDownTimer} />
+        <Stack.Screen name="News" component={News} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

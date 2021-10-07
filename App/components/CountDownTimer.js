@@ -6,12 +6,12 @@ import CountDown from "react-native-countdown-component";
 const pastOfCurrent = 30;
 const event = "Tenefüs";
 
-export default function CountDownTimer() {
+export default function CountDownTimer({ navigation }) {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       style={styles.container}
-      // TODO: onPress={() => navigator.navigate("Countdowns page")} Countdonws sayfasına yönlendirilcek
+      onPress={() => navigation.navigate("Countdown")}
     >
       <Text style={styles.countdownLabel}>{event}'e</Text>
       <CountDown
